@@ -1,5 +1,5 @@
 = Tekton 101-Test1
-:author: Hafid Haddouti
+:author:
 :toc: macro
 :toclevels: 4
 :sectlinks:
