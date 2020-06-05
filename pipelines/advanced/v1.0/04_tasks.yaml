@@ -1,0 +1,22 @@
+# Task: Canary Testing
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: canary-test-automation
+spec:
+  workspaces:
+    - name: shared-workspace
+  steps:
+    - name: test-canary-deployment
+      image: sayom1/selenium-maven-docker:latest
+      workingDir: $(workspaces.shared-workspace.path)
+      script: |
+        #!/usr/bin/env bash
+        
+        ls -a
+        git clone https://github.com/sayom88/canarytestseleniumautomation.git
+        cd canarytestseleniumautomation
+        mvn clean install
+---
+
