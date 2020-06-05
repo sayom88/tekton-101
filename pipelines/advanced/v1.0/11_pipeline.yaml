@@ -142,3 +142,22 @@ spec:
       value: $(params.project_name)
     runAfter:
     - nodejs-build-image 
+ # Task: Canary Testing
+  - name: canary-testing
+    conditions:
+    - conditionRef: is-equal
+      params:
+      - name: "left"
+        value: "false"
+      - name: "right"
+        value: "$(params.use-canary-deployment)"
+    taskRef:
+      name: canary-test-automation
+      kind: Task
+    resources:      
+      inputs:      
+      - name: source
+        resource: git-repo  
+    params:       
+    runAfter:
+    - nodejs-build-image 
